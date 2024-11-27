@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add categories</title>
+</head>
+<body>
+<!--<h1>CATEGORIES</h1>-->
+<div class="col-sm-12 col-xl-12">
+<form method="post" action="{% url 'updatecat' cat_id=cats.id%}" enctype="multipart/form-data">
+    {% csrf_token %}
+<!--<div class="col-sm-12 col-xl-12">-->
+                        <div class=" rounded h-100 p-4">
+                            <h6 class="mb-4">Edit categories</h6>
+                            <div class="form-floating mb-3">
+                                <label for="floatingInput">Category Name</label>
+                                <input type="text" class="form-control" id="floatingInput" placeholder="Category Name" name="cname" value="{{cats.ccname}}">
+<!--                                <label for="floatingInput">Category Name</label>-->
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label" >Upload Image</label>
+                                <img src="{{cats.cimage.url}}" width="70px" height="70px">
+                                <input class="form-control bg-dark" type="file" id="formFile" name="pic" value="{{cats.cimage}}">
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                 <label for="floatingTextarea">Description</label>
+                                <textarea class="form-control" placeholder="Description" name="cdes" id="floatingTextarea" style="height: 150px;"> {{cats.cdesc}}</textarea>
+<!--                                <label for="floatingTextarea">Description</label>-->
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <button type="submit" class="btn btn-primary" style="width:100px">UPDATE</button>
+                            </div>
+
+                        </div>
+<!--                    </div>-->
+</form>
+    </div>
+</body>
+</html>
+{% endblock %}

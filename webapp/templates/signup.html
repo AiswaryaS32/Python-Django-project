@@ -1,0 +1,123 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <title>Sign Up 09</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="{% static 'userlogin/css/style.css' %}" rel="stylesheet">
+
+</head>
+<body class="img" style="background-image: url({% static 'userlogin/images/bg1.png' %});">
+<section class="ftco-section"
+         style="background-image: url({% static 'userlogin/images/bg1.png' %});background-size:fit;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <!--					<h2 class="heading-section">Sign Up </h2>-->
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-7 col-lg-5">
+                <div class="login-wrap">
+                    <h3 class="text-center mb-4">Create Your Account</h3>
+                    <form action="{% url 'save_signup' %}" class="signup-form" method="post" name="myform" onsubmit="myfunction()">
+                        {%  csrf_token %}
+
+                        <div class="form-group mb-3">
+                            <label class="label">Username</label>
+                            <input class="form-control" name="username1" placeholder="John Doe" type="text" required>
+                            <span class="icon fa fa-user-o"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="label">Email Address</label>
+                            <input class="form-control" name="email1" placeholder="johndoe@gmail.com" type="text" value="" required>
+                            <span class="icon fa fa-paper-plane-o"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="label">Contact</label>
+                            <input class="form-control" name="contact1" placeholder="Mobile" type="tel" required>
+                            <span class="icon fa fa-paper-plane-o"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="label" for="password">Password</label>
+                            <input class="form-control" id="password" name="password1" placeholder="Password"
+                                   type="password" required>
+                            <span class="fa fa-fw fa-eye field-icon toggle-password" toggle="#password" ></span>
+                            <span class="icon fa fa-lock"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="label" for="password" >Repeat Password</label>
+                            <input class="form-control" id="password-confirm" name="password2" placeholder="Password"
+                                   type="password" required>
+                            <span class="fa fa-fw fa-eye field-icon toggle-password" toggle="#password-confirm"></span>
+                            <span class="icon fa fa-lock"></span>
+                        </div>
+                        <div class="form-group">
+                            <button class="form-control btn btn-primary submit px-3" type="submit">Sign Up</button>
+                        </div>
+                    </form>
+                    <p>I'm already a member! <a href="{% url 'login_page' %}">Sign In</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="{% static 'userlogin/js/jquery.min.js' %}"></script>
+<script src="{% static 'userlogin/js/popper.js' %}"></script>
+<script src="{% static 'userlogin/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'userlogin/js/main.js' %}"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+    {% for i in messages %}
+
+            {% if i.tags == 'success' %}
+            <script>
+                swal('{{i}}','','success');
+            </script>
+
+            {% elif i.tags == 'error' %}
+            <script>
+                swal('{{i}}','','error');
+            </script>
+
+            {% elif i.tags == 'warning' %}
+            <script>
+                swal('{{i}}','','warning');
+            </script>
+
+            {% else %}
+            <script>
+                swal('{{i}}','','info');
+            </script>
+            {% endif %}
+
+    {% endfor %}
+{% endif %}
+    <script>
+        function myfunction(){
+            let cont = document.myform.contact1.value;
+            let ps1 = document.myform.password1.value;
+            let ps2 = document.myform.password2.value;
+
+            if(cont.length<10){
+                alert("Mobile number should contain 10 digit");
+            }
+            else if(ps1.length<8 | ps2.length<8){
+                alert("Password must be 8 characters long..!");
+            }
+            else if(ps1!=ps2){
+                alert("Password doesn't match !!");
+            }
+        }
+    </script>
+</body>
+</html>
+

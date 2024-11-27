@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="background-image: url({% static 'web/img/payment.png' %}); background-size:100%;">
+<!--<a href="#" class="genric-btn info radius">Make Payment</a>-->
+<form method="post">
+<div style="margin-left:300px; margin-top:250px;" >
+    <h1 style="color:#38a4ff;">Proceed to payment</h1>
+    <h2>{{customer.Fname}} {{customer.Lname}}</h2>
+<button class="genric-btn info radius" style="margin-top:10px;" >Make Payment</button>
+</div>
+    </form>
+<style>
+    .genric-btn.info {
+    color: #fff;
+    background: #38a4ff;
+    border: 1px solid transparent;
+}
+.genric-btn.radius {
+    border-radius: 3px;
+}
+.button-group-area .genric-btn {
+    margin-right: 10px;
+    margin-top: 10px;
+}
+.genric-btn {
+    display: inline-block;
+    outline: none;
+    line-height: 40px;
+    padding: 0 30px;
+    font-size: .8em;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+}
+</style>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"
+    data-key="rzp_test_JvjyjpAbolAtIN"
+    data-amoun"
+    data-buttontext="t="{{payy_strr}}"
+    data-currency="INR"
+    data-order_id="{{payment.order_id}}"
+    data-name="Hello"
+    data-description="Your description"
+    data-image=""
+    data-prefill.name="abc"
+    data-prefill.email="abc@gmail.com"
+    data-theme.color="#4badeb"
+ >
+
+</script>
+</body>
+</html>

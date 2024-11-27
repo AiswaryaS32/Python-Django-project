@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-sm-12 col-xl-10 w-1000">
+                        <div class="table-responsive rounded h-100 p-4">
+                            <h6 class="mb-4">Product List</h6>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+<!--                                        <th scope="col">No.</th>-->
+                                        <th >Product name </th>
+                                        <th >Category name </th>
+                                        <th>Quantity </th>
+                                        <th >Price </th>
+                                        <th>Image 1 </th>
+                                        <th >Image 2 </th>
+                                        <th >Image 3 </th>
+                                        <th >Manufactured by</th>
+                                        <th >Country of orgin</th>
+                                        <th>Description</th>
+                                        <th> </th>
+                                        <th> </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for i in pro %}
+                                    <tr>
+<!--                                        <th scope="row">{{i.id}}</th>-->
+                                        <td>{{i.pname}}</td>
+                                        <td>{{i.pcat}}</td>
+                                        <td>{{i.pquan}}</td>
+                                        <td>{{i.pprice}}</td>
+                                        <td>
+                                            <img src="{{i.pimage1.url}}" width="70px" height="70px">
+                                        </td>
+
+                                         <td>
+                                            <img src="{{i.pimage2.url}}" width="70px" height="70px">
+                                        </td>
+
+                                         <td>
+                                            <img src="{{i.pimage3.url}}" width="70px" height="70px">
+                                        </td>
+
+                                        <td>{{i.pman}}</td>
+                                        <td>{{i.coun}}</td>
+                                        <td>{{i.pdesc}}</td>
+
+                                         <td>
+                                            <a href="{% url 'editpro' p_id=i.id %}" >
+                                                <button type="button" class="btn btn-link m-2">Edit</button>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{% url 'deletepro' pd_id=i.id %}">
+
+                                                <button type="button" class="btn btn-link m-2">Delete</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+    {% for i in messages %}
+
+            {% if i.tags == 'success' %}
+            <script>
+                swal('{{i}}','','success');
+            </script>
+
+            {% elif i.tags == 'error' %}
+            <script>
+                swal('{{i}}','','error');
+            </script>
+
+            {% elif i.tags == 'warning' %}
+            <script>
+                swal('{{i}}','','warning');
+            </script>
+
+            {% else %}
+            <script>
+                swal('{{i}}','','info');
+            </script>
+            {% endif %}
+
+    {% endfor %}
+{% endif %}
+</body>
+</html>
+{% endblock %}
